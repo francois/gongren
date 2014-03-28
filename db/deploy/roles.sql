@@ -1,0 +1,27 @@
+-- Deploy roles
+SET client_min_messages TO 'warning';
+
+BEGIN;
+
+  CREATE GROUP gongren;
+  ALTER DATABASE gongren OWNER TO gongren;
+
+  CREATE USER gongrenui;
+  GRANT CONNECT ON DATABASE gongren TO gongrenui;
+
+  ALTER DEFAULT PRIVILEGES FOR ROLE gongren
+  IN SCHEMA public
+  GRANT SELECT, INSERT, DELETE, DELETE, REFERENCES
+  ON TABLES TO gongrenui;
+
+  ALTER DEFAULT PRIVILEGES FOR ROLE gongren
+  IN SCHEMA public
+  GRANT USAGE
+  ON SEQUENCES TO gongrenui;
+
+  ALTER DEFAULT PRIVILEGES FOR ROLE gongren
+  IN SCHEMA public
+  REVOKE ALL PRIVILEGES
+  ON FUNCTIONS FROM PUBLIC;
+
+COMMIT;

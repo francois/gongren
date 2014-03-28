@@ -2,4 +2,6 @@
 %project=gongren
 %uri=https://github.com/francois/gongren
 
-initial-tables 2014-03-28T14:19:18Z Francois Beausoleil <francois@teksol.info> # Create a basic schema to work with
+roles 2014-03-28T19:38:28Z Francois Beausoleil <francois@teksol.info> # Create application roles
+load-extensions 2014-03-28T17:35:40Z Francois Beausoleil <francois@teksol.info> # Load commonly required extensions
+initial-tables [roles load-extensions] 2014-03-28T14:19:18Z Francois Beausoleil <francois@teksol.info> # Create a basic schema to work with

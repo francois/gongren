@@ -1,5 +1,6 @@
 -- Deploy initial-tables
 SET client_min_messages TO 'warning';
+SET ROLE TO gongren;
 
 BEGIN;
 
@@ -109,6 +110,7 @@ BEGIN;
     , primary key(resource_code, start_at)
     , foreign key(resource_code, price_valid_on, unit_price, unit_interval) references resource_prices
     , constraint duration_greater_than_zero check(start_at < end_at)
+    , exclude USING gist (resource_code WITH =, tstzrange(start_at, end_at) WITH &&)
     , constraint duration_is_an_integer check(
         case
         when unit_interval > '1 day' then
@@ -117,8 +119,6 @@ BEGIN;
           ceil(extract(epoch from (end_at - start_at)) / extract(epoch from unit_interval)) = units
         end
       )
-
-    -- TODO: add exclusion constraint
   );
 
 COMMIT;

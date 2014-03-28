@@ -1,0 +1,9 @@
+#!/bin/sh
+echo "Dropping existing database -- enter sqitch user credentials"
+dropdb -U sqitch -h 192.168.33.10 gongren
+dropuser -U sqitch -h 192.168.33.10 gongren
+dropuser -U sqitch -h 192.168.33.10 gongrenui
+
+echo "Creating new database -- enter sqitch user credentials"
+createdb -U sqitch -h 192.168.33.10 --locale=en_US.UTF-8 --encoding=UTF-8 --template=template0 gongren
+sqitch deploy
