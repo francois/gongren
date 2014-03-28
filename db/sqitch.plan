@@ -1,0 +1,5 @@
+%syntax-version=1.0.0-b2
+%project=gongren
+%uri=https://github.com/francois/gongren
+
+initial-tables 2014-03-28T14:19:18Z Francois Beausoleil <francois@teksol.info> # Create a basic schema to work with
