@@ -16,6 +16,14 @@ BEGIN;
     , primary key(party_id)
   );
 
+  CREATE TABLE party_passwords(
+      party_id int not null references parties
+    , crypted_password text not null
+    , last_updated_at timestamp with time zone not null
+
+    , primary key(party_id)
+  );
+
   CREATE TABLE party_locators(
       party_id int not null references parties on update cascade on delete cascade
     , locator_role text not null references locator_roles on update cascade on delete restrict
